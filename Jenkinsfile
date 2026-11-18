@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = 'jenkins-ad-app'
-        IMAGE_NAME = 'jenifermary/jenkins-ad-app1'
-        CONTAINER_NAME = 'jenkins-advanced-container'
+        APP_NAME = 'docker-server'
+        IMAGE_NAME = 'jenifermary/docker-server'
+        CONTAINER_NAME = 'docker-hub-server'
         HOST_PORT = '8081'
     }
 
@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/JeniferMary22/Jenkins-ad-app1.git'
+                    url: 'https://github.com/JeniferMary22/Docker-server.git'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'dockerhub-creds',
+                        credentialsId: 'docker-creds',
                         usernameVariable: 'DOCKER_USERNAME',
                         passwordVariable: 'DOCKER_PASSWORD'
                     )
